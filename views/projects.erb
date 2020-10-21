@@ -1,0 +1,22 @@
+<div class="col-md-8">
+<% if @projects.any? %>
+  <table class="table table-striped" style="color: #D8DDEF; background-color: #A0A4B8">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Hours Completed</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><a href="/projects/<%= project.id %>" style="color: #D8DDEF"><%= project.title %></a></td>
+        <td><%= project.get_hours %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>There are currently no projects to display.</p>
+<% end %>
+</div>
