@@ -1,3 +1,2 @@
 class Project
-
 end
