@@ -1,17 +1,15 @@
-<div class="col-md-8">
+<div>
 <% if @projects.any? %>
-  <table class="table table-striped" style="color: #D8DDEF; background-color: #A0A4B8">
+  <table>
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Title</th>
-        <th scope="col">Hours Completed</th>
+        <th scope="col">Title</th>        
       </tr>
     </thead>
     <tbody>
     <% @projects.each do |project| %>
       <tr>
-        <td><a href="/projects/<%= project.id %>" style="color: #D8DDEF"><%= project.title %></a></td>
-        <td><%= project.get_hours %></td>
+        <td><a href="/projects/<%= project.id %>"><%= project.title %></a></td>
       </tr>
     <% end %>
     </tbody>
@@ -19,4 +17,15 @@
 <% else %>
   <p>There are currently no projects to display.</p>
 <% end %>
+</div>
+
+<div><h5>Add a Project</h5></div>
+<div class="card-body">
+  <form action="/projects" method="post">
+    <div class="form-group">
+      <label for="title">Project Title</label>
+      <input id="title" name="title" class="form-control" type="text" required>
+    </div>
+    <button type="submit" class="btn btn-dark">Create Project!</button>
+  </form>
 </div>

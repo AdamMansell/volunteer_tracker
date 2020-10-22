@@ -16,6 +16,12 @@ get('/projects') do
   erb(:projects)
 end
 
+post('/projects') do
+  title = params[:title]
+  Project.new(title: title, id: nil).save
+  redirect to('/projects')
+end
+
 # Project (1)
 # name
 # has_many :volunteers
