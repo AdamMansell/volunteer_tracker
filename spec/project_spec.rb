@@ -50,8 +50,7 @@ describe Project do
     it 'saves a project to the database' do
       project = Project.new(title: 'Teaching Kids to Code', id: nil)
       project.save
-      expect(project.id).to eq 1
-      # expect(Project.all).to eq [project]
+      expect(Project.all).to eq [project]
     end
   end
 
