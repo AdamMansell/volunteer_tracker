@@ -10,7 +10,7 @@ class Project
   def save
     if title
       result = DB.exec("INSERT INTO projects (title) VALUES ('#{title}') RETURNING id;")
-      @id = result.first.fetch('id').to_i
+      @id = result.first['id'].to_i
     end
   end
 
@@ -24,6 +24,17 @@ class Project
   def delete
     DB.exec("DELETE FROM projects WHERE id = #{id};")
     DB.exec("DELETE FROM volunteers WHERE project_id = #{id}")
+  end
+
+  def volunteers
+    volunteers = []
+    results = DB.exec("SELECT * from volunteers WHERE project_id = #{id};")
+    if results
+      results.each do |volunteer|      
+        volunteers << Volunteer.new(id: volunteer['id'], name: volunteer['name'], project_id: id)
+      end
+    end
+    volunteers
   end
 
   def ==(other_project)
