@@ -14,6 +14,14 @@ class Project
     end
   end
 
+  def ==(other_project)
+    if other_project != nil
+      title == other_project.title && id == other_project.id
+    else
+      false
+    end
+  end
+
   class << self
     def find(id)
       project = DB.exec("SELECT * FROM projects WHERE id = #{id};").first
