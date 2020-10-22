@@ -37,7 +37,7 @@ describe Project do
       expect(Project.all).to eq []
     end
 
-    it 'returns all projects' do
+    it 'returns all the projects' do
       project1 = Project.new({:title => 'Teaching Kids to Code', :id => nil})
       project1.save
       project2 = Project.new({:title => 'Teaching Ruby to Kids', :id => nil})
