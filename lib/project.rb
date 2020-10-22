@@ -21,6 +21,11 @@ class Project
     end
   end
 
+  def delete
+    DB.exec("DELETE FROM projects WHERE id = #{id};")
+    DB.exec("DELETE FROM volunteers WHERE project_id = #{id}")
+  end
+
   def ==(other_project)
     if other_project != nil
       title == other_project.title && id == other_project.id
