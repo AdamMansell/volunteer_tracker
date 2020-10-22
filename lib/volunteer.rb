@@ -11,7 +11,6 @@ class Volunteer
   def ==(volunteer)
     return false if volunteer.nil?
     # its an instance method, so inside this method, self is the instance of Volunteer class
-
     (name == volunteer.name) && (project_id == volunteer.project_id) && (hours == volunteer.hours)
   end
 
