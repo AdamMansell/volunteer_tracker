@@ -52,6 +52,21 @@ post('/projects/:id/volunteers') do
   erb(:show_project)
 end
 
+get('/projects/:id/volunteers/:volunteer_id') do
+  @project = Project.find(params[:id].to_i)
+  @volunteer = Volunteer.find(params[:volunteer_id].to_i)
+  erb(:show_volunteer)
+end
+
+patch('/projects/:id/volunteers/:volunteer_id') do
+  @project = Project.find(params[:id].to_i)
+  @volunteer = Volunteer.find(params[:volunteer_id].to_i)
+  if params[:name]
+    @volunteer.update(name: params[:name]) 
+  end
+  erb(:show_volunteer)
+end
+
 # Project (1)
 # name
 # has_many :volunteers
