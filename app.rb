@@ -22,6 +22,11 @@ post('/projects') do
   redirect to('/projects')
 end
 
+get('/projects/:id') do
+  @project = Project.find(params[:id].to_i)
+  erb(:show_project)
+end
+
 # Project (1)
 # name
 # has_many :volunteers
