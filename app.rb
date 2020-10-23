@@ -1,6 +1,7 @@
 require('sinatra')
 require('sinatra/reloader')
-# require('./lib/')
+require('./lib/project')
+require('./lib/volunteer')
 require('pry')
 require('pg')
 also_reload('lib/**/*.rb')
@@ -42,6 +43,13 @@ delete('/projects/:id') do
   @project = Project.find(params[:id].to_i)
   @project.delete
   redirect to('/projects')
+end
+
+post('/projects/:id/volunteers') do
+  @project = Project.find(params[:id].to_i)
+  volunteer = Volunteer.new(name: params[:name], project_id: @project.id, id: nil)
+  volunteer.save
+  erb(:show_project)
 end
 
 # Project (1)

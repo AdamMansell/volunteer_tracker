@@ -7,3 +7,41 @@
       <a class="nav-link text-dark" href="/projects/<%= @project.id %>/edit">Edit Project</a>
     </div>
   </div>
+
+  <hr/>
+  
+  <div>
+  <% if @project.volunteers.any? %>
+    <table>
+      <thead>
+        <tr>
+          <th>Volunteers</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @project.volunteers.each do |volunteer| %>
+        <tr>
+          <td><a href="/projects/<%= @project.id %>/volunteers/<%= volunteer.id %>"><%= volunteer.name %></a></td>              
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No volunteers found for this project!</p>
+  <% end %>
+</div>
+
+<hr/>
+
+<div>
+  <div><h4>Add a Volunteer to the project!</h4></div>
+  <div>
+    <form action="/projects/<%= @project.id %>/volunteers" method="post">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input id="name" name="name" class="form-control" type="text" required>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
