@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require('sinatra')
 require('sinatra/reloader')
 require('./lib/project')
@@ -6,7 +8,7 @@ require('pry')
 require('pg')
 also_reload('lib/**/*.rb')
 
-DB = PG.connect(dbname: "volunteer_tracker")
+DB = PG.connect(dbname: 'volunteer_tracker')
 
 get('/') do
   redirect to('/projects')
@@ -61,9 +63,7 @@ end
 patch('/projects/:id/volunteers/:volunteer_id') do
   @project = Project.find(params[:id].to_i)
   @volunteer = Volunteer.find(params[:volunteer_id].to_i)
-  if params[:name]
-    @volunteer.update(name: params[:name]) 
-  end
+  @volunteer.update(name: params[:name]) if params[:name]
   erb(:show_volunteer)
 end
 
@@ -78,7 +78,7 @@ end
 # name
 # email
 # address
-# project_id (foreign key) 
+# project_id (foreign key)
 
 # vol 1: name: name 1 project_id: 1
 # vol 2: name: name 2 project_id: 1

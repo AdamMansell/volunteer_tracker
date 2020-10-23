@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 class Project
-  attr_reader :id
-  attr_accessor :title
+  attr_reader :id, :title
 
   def initialize(attributes)
     @title = attributes[:title]
@@ -29,16 +30,14 @@ class Project
   def volunteers
     volunteers = []
     results = DB.exec("SELECT * from volunteers WHERE project_id = #{id};")
-    if results
-      results.each do |volunteer|      
-        volunteers << Volunteer.new(id: volunteer['id'], name: volunteer['name'], project_id: id)
-      end
+    results&.each do |volunteer|
+      volunteers << Volunteer.new(id: volunteer['id'], name: volunteer['name'], project_id: id)
     end
     volunteers
   end
 
   def ==(other_project)
-    if other_project != nil
+    if !other_project.nil?
       title == other_project.title && id == other_project.id
     else
       false
@@ -48,18 +47,14 @@ class Project
   class << self
     def find(id)
       project = DB.exec("SELECT * FROM projects WHERE id = #{id};").first
-      if project
-        Project.new(title: project['title'], id: project['id'].to_i)
-      end
+      Project.new(title: project['title'], id: project['id'].to_i) if project
     end
 
     def all
       projects = []
-      result = DB.exec("SELECT * FROM projects;")
-      if result
-        result.each do |project|
-          projects << Project.new(title: project['title'], id: project['id'].to_i)
-        end
+      results = DB.exec('SELECT * FROM projects;')
+      results&.each do |project|
+        projects << Project.new(title: project['title'], id: project['id'].to_i)
       end
       projects
     end
