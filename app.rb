@@ -38,6 +38,12 @@ patch('/projects/:id') do
   erb(:show_project)
 end
 
+delete('/projects/:id') do
+  @project = Project.find(params[:id].to_i)
+  @project.delete
+  redirect to('/projects')
+end
+
 # Project (1)
 # name
 # has_many :volunteers
