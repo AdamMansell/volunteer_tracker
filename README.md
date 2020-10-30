@@ -8,19 +8,50 @@
 In this project, we develope a site where we can create projects and add volunteers to them.
 
 ## Setup
-Clone this repository.
 
-Open the project files in your text editor.
+## Database Setup:
 
-To view a file in the browser:
+You will need postgreSQL installed in your machine.
 
-Right click one file at a time & copy it's path.
+In terminal, type: `psql` to connect to your psql console.
 
-Open your prefered internet browser and paste the file path to view the file.
-(If using mac, after pasting link in search bar, check for "file" dropdown option before hitting return).
+Then create the `volunteer_tracker` database:
+
+```
+CREATE DATABASE volunteer_tracker;
+```
+Then, connect to the volunteer_tracker database:
+
+```
+\c volunteer_tracker;
+```
+
+Finally, import the data from the `database_backup.sql` file:
+
+```
+\i 'FULL_PATH_TO_DATABASE_BACKUP.SQL_FILE'
+e.g.
+\i '/Users/adammansell/desktop/Epicodus Projects/volunteer_tracker/database_backup.sql'
+```
+
+## Setup Sinatra Application
+
+Install the project dependencies:
+
+```
+bundle install
+```
+
+Run the sinatra app:
+
+```
+ruby app.rb
+```
+
+Visit: `http://localhost:4567` to see the application in action!
 
 ## Technologies Used
-For this project I used Ruby and Postgres.
+For this project I used Ruby, Sinatra framework and Postgres as a relation database.
 
 ## Legal
 _Copyright (c) 2020 Adam Mansell_
