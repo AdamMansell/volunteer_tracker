@@ -18,20 +18,20 @@ In terminal, type: `psql` to connect to your psql console.
 Then create the `volunteer_tracker` database:
 
 ```
-CREATE DATABASE volunteer_tracker;
+user-name=# CREATE DATABASE volunteer_tracker;
 ```
-Then, connect to the volunteer_tracker database:
+Then, connect to the `volunteer_tracker` database:
 
 ```
-\c volunteer_tracker;
+user-name=# \c volunteer_tracker;
 ```
 
 Finally, import the data from the `database_backup.sql` file:
 
 ```
-\i 'FULL_PATH_TO_DATABASE_BACKUP.SQL_FILE'
+volunteer_tracker=# \i 'FULL_PATH_TO_DATABASE_BACKUP.SQL_FILE'
 e.g.
-\i '/Users/adammansell/desktop/Epicodus Projects/volunteer_tracker/database_backup.sql'
+volunteer_tracker=# \i '/Users/adammansell/desktop/Epicodus-Projects/volunteer_tracker/database_backup.sql'
 ```
 
 ## Setup Sinatra Application
@@ -49,6 +49,13 @@ ruby app.rb
 ```
 
 Visit: `http://localhost:4567` to see the application in action!
+
+## Run spec test:
+You can run the spec tests by typing the following in the terminal:
+
+```
+ bundle exec rspec
+ ```
 
 ## Technologies Used
 For this project I used Ruby, Sinatra framework and Postgres as a relation database.
